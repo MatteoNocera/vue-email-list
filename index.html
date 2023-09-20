@@ -12,12 +12,24 @@
 
 
 
-    <div id="app">
+    <div id="app" class="container">
         
         <h1>Random User Mail</h1>
-        <ul v-if="mails.length === 10">
-            <li v-for="mail in mails">{{mail}}</li>
-        </ul>
+
+        <div>
+
+            <h2 v-if="mails.length != 10" >
+                Caricamento...
+                <span>
+                    <i></i>
+                </span>
+            </h2>
+
+            <ul v-else>
+                <li v-for="mail in mails">{{mail}}</li>
+            </ul>
+        </div>
+        
 
     </div>
 
