@@ -42,20 +42,17 @@ const { createApp } = Vue
     data() {
       return {
         mails: [],
-        // inserisco un 
-        numberOfMail: [1,2,3,4,5,6,7,8,9,10]
+        
       }
     },
     // Uso created per chiamare dopo che siano state e
-    created() {
-
-
+    mounted() {
 
         // uso un for per ciclare un numero di volte selezionato
         for (let i = 0; i < 10; i++) {
             axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
             .then(response=>{
-                console.log(i + 1);
+                //console.log(i);
                 //console.log(response);
                 //console.log(response.data.response);
                 this.mails.push(response.data.response);
