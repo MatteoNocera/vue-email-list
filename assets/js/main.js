@@ -4,8 +4,10 @@ Attraverso l'apposita API di Boolean https://flynn.boolean.careers/exercises/api
 Bonus
 Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 Consigli:
-iniziamo a capire usando postman cosa ci restituisce una chiamata all'endpoint :puntare_su_2: qui sopra.
+iniziamo a capire usando postman cosa ci restituisce una chiamata all'endpoint
+
 dove inserisco la chiamata ajax? uso una lifecycle hook? quale?
+
 devo ottenere 10 email tramite la chiamata, come faccio a ripetere un operazione cosí tante volte senza riscrivere la stessa implementazione? conosco uno strumento che mi puó tornare utile?
 dové la CDN di axios? https://cdnjs.com/libraries/axios
 */
@@ -28,28 +30,37 @@ Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 
 // tramite axios.get.then vado ad utilizzare l'oggetto generato
 
-// creo una proprieta in return dove pushare dentro le mail
+// creo un array in return dove pushare dentro le mail
 
-// pusho la mail generata
+// pusho la mail generata in un array
 
-// svuoto la proprietà
-
-// ciclo per 10 volte
+// ciclo per il numero numberOfMail
 
 const { createApp } = Vue
 
   createApp({
     data() {
       return {
-        mail: ''
+        mails: [],
+        // inserisco un 
+        numberOfMail: [1,2,3,4,5,6,7,8,9,10]
       }
     },
-    mounted() {
-        axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-        .then(response=>{
-            console.log(response);
-            console.log(response.data.response);
+    created() {
+
+        // uso un for each per ciclare un numero di volte selezionato
+        this.numberOfMail.forEach(index => {
+            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+            .then(response=>{
+                console.log(index);
+                //console.log(response);
+                //console.log(response.data.response);
+                this.mails.push(response.data.response);
+                //console.log(this.mails);
             
-        })
+            
+            });
+        });
+        
     }
   }).mount('#app')
